@@ -3,7 +3,7 @@ library(CovCoagEmaPrediction)
 # USER INPUTS
 #=======================
 # The folder where the study intermediate and result files will be written:
-outputFolder <- "./CovCoagEmaPredictionResults"
+outputFolder <- "~/Downloads/EmaOutput_25p"
 
 # Details for connecting to the server:
 dbms <- "you dbms"
@@ -16,12 +16,13 @@ connectionDetails <- DatabaseConnector::createConnectionDetails(dbms = dbms,
                                                                 server = server,
                                                                 user = user,
                                                                 password = pw,
-                                                                port = port)
+                                                                port = port,
+                                                                pathToDriver = "~/Downloads/jmdcDrivers")
 
 # Add the database containing the OMOP CDM data
 cdmDatabaseSchema <- 'cdm database schema'
 # Add a sharebale name for the database containing the OMOP CDM data
-cdmDatabaseName <- 'a friendly shareable  name for your database'
+cdmDatabaseName <- 'CPRD Aurum'
 # Add a database with read/write access as this is where the cohorts will be generated
 cohortDatabaseSchema <- 'work database schema'
 
@@ -40,17 +41,17 @@ minCellCount= 5
 # want to generate a study protocol? Set below to TRUE
 createProtocol <- FALSE
 # want to generate the cohorts for the study? Set below to TRUE
-createCohorts <- TRUE
+createCohorts <- FALSE
 # want to run a diagnoston on the prediction and explore results? Set below to TRUE
 runDiagnostic <- FALSE
 viewDiagnostic <- FALSE
 # want to run the prediction study? Set below to TRUE
-runAnalyses <- TRUE
+runAnalyses <- FALSE
 sampleSize <- NULL # edit this to the number to sample if needed
 # want to populate the protocol with the results? Set below to TRUE
 createResultsDoc <- FALSE
 # want to create a validation package with the developed models? Set below to TRUE
-createValidationPackage <- FALSE
+createValidationPackage <- TRUE
 analysesToValidate = NULL
 # want to package the results ready to share? Set below to TRUE
 packageResults <- FALSE
@@ -78,13 +79,14 @@ execute(connectionDetails = connectionDetails,
         runAnalyses = runAnalyses,
         createResultsDoc = createResultsDoc,
         createValidationPackage = createValidationPackage,
-        analysesToValidate = analysesToValidate,
+        analysesToValidate = seq(1, 24, 1)[-c(10, 18, 2)],
+        skeletonVersion = "v1.0.4",
         packageResults = packageResults,
         minCellCount= minCellCount,
         createShiny = createShiny,
         createJournalDocument = createJournalDocument,
         analysisIdDocument = analysisIdDocument,
         sampleSize = sampleSize)
-
+# [-c(24, 28, 29, 30, 4, 5, 52, 53, 54, 6)]
 # Uncomment and run the next line to see the shiny results:
 # PatientLevelPrediction::viewMultiplePlp(outputFolder)

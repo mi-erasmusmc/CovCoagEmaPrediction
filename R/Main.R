@@ -316,11 +316,11 @@ execute <- function(connectionDetails,
                                     analysisLocation = outputFolder,
                                     analysisIds = analysesToValidate,
                                     outputFolder = outputFolder,
-                                    packageName = 'CovCoagEmaPredictionValidation',
-                                    description = 'validating models in CovCoagEmaPrediction',
+                                    packageName = 'CovCoagEmaValidation',
+                                    description = 'Validating models developed through CovCoagEmaPrediction on CPRD Aurum',
                                     skeletonVersion = skeletonVersion,
-                                    createdBy = 'anonymous',
-                                    organizationName = 'none')
+                                    createdBy = 'Henrik John',
+                                    organizationName = 'Erasmus University Medical Center')
         
         
       }, error = function(e){ParallelLogger::logError(e)})
