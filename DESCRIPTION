@@ -1,7 +1,7 @@
 Package: CovCoagEmaPrediction
 Type: Package
 Title: Coagulopathy prediction in SARS-Cov-2
-Version: 1.6.0
+Version: 1.7.0
 Author: Henrik John
 Maintainer: Henrik John <l.john@erasmusmc.nl>
 Description: Coagulopathy prediction in SARS-Cov-2 using predictors proposed by the EMA plus sex and age.
